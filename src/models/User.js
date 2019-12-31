@@ -7,8 +7,13 @@ class User extends Model {
             name: DataTypes.STRING,
             email: DataTypes.STRING
         }, {
+            tableName: 'user',
             sequelize: conn
         });
+    }
+
+    static associate(models) {
+        this.hasMany(models.Address, { foreignKey: 'user_id', as: 'addresses' })
     }
 
 }
